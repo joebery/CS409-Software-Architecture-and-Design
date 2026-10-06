@@ -1,13 +1,17 @@
 package Labs.Lab3;
 
-interface Notification {
-
-    void send(String message);
+///IN THIS EXAMPLE I HAVE IMPLEMENTED Notification AS A ABSTRACT CLASS,
+/// I HAVE ALSO INCLUDED THE COMMENTED OUT VERSION FOR USING AN INTERFACE
+abstract class Notification {
+    public abstract void send(String message);
 }
+//interface Notification {
+//    void send(String message);
+//}
 
 
-class EmailNotification implements Notification {
-
+class EmailNotification extends Notification {
+//class EmailNotification implements Notification {
     @Override
     public void send(String message) {
         System.out.println("Email: " + message);
@@ -15,8 +19,8 @@ class EmailNotification implements Notification {
 }
 
 
-class SMSNotification implements Notification {
-
+class SMSNotification extends Notification {
+//do the same for this
     @Override
     public void send(String message) {
         System.out.println("SMS: " + message);
@@ -24,8 +28,8 @@ class SMSNotification implements Notification {
 }
 
 
-class PushNotification implements Notification {
-
+class PushNotification extends Notification {
+//do the same for this
     @Override
     public void send(String message) {
         System.out.println("Push: " + message);
