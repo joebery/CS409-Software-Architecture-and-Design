@@ -2,7 +2,23 @@ package Labs.Lab4;
 
 public class Lab4
 {
-    class Pizza {
+
+
+    public static void main(String[] args) {
+
+        PizzaBuilder pizzaBuilder = new CustomPizzaBuilder();
+
+        PizzaDirector pizzaDirector = new PizzaDirector();
+
+        pizzaDirector.makeMargherita(pizzaBuilder);
+
+        Pizza finishedPizza = pizzaBuilder.build();
+
+        System.out.println(finishedPizza);
+    }
+
+
+    static class Pizza {
         private String crust;
         private String sauce;
         private boolean cheese;
@@ -33,17 +49,17 @@ public class Lab4
 
 
     interface PizzaBuilder {
-        PizzaBuilder setCrust(String crust);
-        PizzaBuilder setSauce(String sauce);
-        PizzaBuilder addCheese();
-        PizzaBuilder addPepperoni();
-        PizzaBuilder addMushrooms();
-        PizzaBuilder setGlutenFree(boolean glutenFree);
+        void setCrust(String crust);
+        void setSauce(String sauce);
+        void addCheese();
+        void addPepperoni();
+        void addMushrooms();
+        void setGlutenFree(boolean glutenFree);
         Pizza build();
     }
 
 
-    class CustomPizzaBuilder implements PizzaBuilder {
+    static class CustomPizzaBuilder implements PizzaBuilder {
 
         // TODO: Declare fields to store the pizza's configuration
         private String crust;
@@ -54,62 +70,79 @@ public class Lab4
         private boolean glutenFree;
 
         @Override
-        public PizzaBuilder setCrust(String crust) {
+        public void  setCrust(String crust) {
             // TODO: Store the crust type
             this.crust = crust;
-            return this;
+
         }
 
         @Override
-        public PizzaBuilder setSauce(String sauce) {
+        public void  setSauce(String sauce) {
             // TODO: Store the sauce type
             this.sauce = sauce;
-            return this;
+
         }
 
         @Override
-        public PizzaBuilder addCheese() {
+        public void  addCheese() {
             // TODO: Add cheese
             this.cheese = true;
-            return this;
+
         }
 
         @Override
-        public PizzaBuilder addPepperoni() {
+        public void  addPepperoni() {
             // TODO: Add pepperoni
             this.pepperoni = true;
-            return this;
+
         }
 
         @Override
-        public PizzaBuilder addMushrooms() {
+        public void  addMushrooms() {
             // TODO: Add mushrooms
             this.mushrooms=true;
-            return this;
+
         }
 
         @Override
-        public PizzaBuilder setGlutenFree(boolean glutenFree) {
+        public void  setGlutenFree(boolean glutenFree) {
             // TODO: Store the gluten-free option
             this.glutenFree=glutenFree;
-            return this;
+
         }
 
         @Override
-        public Pizza build() {
+        public  Pizza build() {
             // TODO: Construct and return a Pizza using the stored configuration
-            return new Pizza(crust, );
+            return new Pizza(crust, sauce, cheese, pepperoni,mushrooms,glutenFree);
 
         }
     }
 
 
-    public class Main {
-        public static void main(String[] args) {
 
-            // TODO: Test your Pizza Builder here
 
-        }
+    static class PizzaDirector  {
+
+            public void makeMargherita(PizzaBuilder pizzaBuilder) {
+                    pizzaBuilder.setCrust("Thin");
+                    pizzaBuilder.setSauce("Tomato");
+                    pizzaBuilder.addCheese();
+                }
+                public void makePepperoni(PizzaBuilder pizzaBuilder) {
+                    pizzaBuilder.setCrust("Thick");
+                    pizzaBuilder.setSauce("Tomato");
+                    pizzaBuilder.addCheese();
+                    pizzaBuilder.addPepperoni();
+                }
+            }
+
+
+
+
+
+
+
     }
 
-}
+
